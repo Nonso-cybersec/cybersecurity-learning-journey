@@ -1,0 +1,121 @@
+
+# LetsDefend — My SOC Foundation
+
+
+---
+
+## Why I Started Here
+
+Before LetsDefend, SOC was just another job title to me.
+I knew it existed but had no real picture of what the 
+work actually looked like day to day.
+
+LetsDefend changed that. It gave me the foundation I 
+needed before touching real tools — the "why" behind 
+everything I would later build in my home lab.
+
+---
+
+## What I Learned
+
+### The SOC Is Not One Person — It's a Team
+
+A SOC operates in layers. Junior analysts handle 
+first-level alert triage — the first eyes on every 
+incoming event. Above them, senior analysts investigate 
+deeper. At the top, security engineers build and 
+maintain the infrastructure the whole team depends on.
+
+Understanding this hierarchy changed how I think about 
+my role. When I investigate an alert in Wazuh, I am 
+doing exactly what a Tier 1 analyst does — triaging, 
+classifying, and deciding what needs escalation.
+
+---
+
+### Alerts Are Not Just Noise — They Tell A Story
+
+One of the biggest shifts in my thinking came from 
+understanding IOCs — Indicators of Compromise. An alert 
+firing is not just a notification. It is evidence. 
+Every alert contains:
+- A source IP
+- A timestamp
+- A rule that was triggered
+- A MITRE ATT&CK technique
+
+When Suricata flagged Kali scanning my Ubuntu machine's 
+database ports, I wasn't just seeing a Wazuh alert — 
+I was reading the early stages of a potential attack.
+LetsDefend taught me to read that story.
+
+---
+
+### The Tools That Power A SOC
+
+**SIEM** — the central nervous system. Collects logs 
+from every endpoint and surface, correlates them, and 
+generates alerts. I built this with Wazuh.
+
+**EDR** — watches endpoint behaviour. Not just logs 
+but processes, file changes, registry modifications. 
+Catches what firewalls miss.
+
+**SOAR** — the playbook engine. When an alert fires, 
+SOAR automates the response — isolating a machine, 
+blocking an IP, notifying the team. It turns manual 
+SOC workflows into automated ones. My home lab doesn't 
+have SOAR yet — but understanding it means I know 
+exactly what to build next.
+
+**Threat Intelligence Feed** — context for every alert. 
+Is this IP known malicious? Has this file hash been 
+seen before? I implemented this concept with VirusTotal 
+API integration in my Wazuh setup.
+
+---
+
+### Network and Linux — The Non-Negotiables
+
+**Network Fundamentals (100% complete)**
+You cannot investigate network-based attacks without 
+understanding how traffic flows. Subnets, routing, 
+protocols — these aren't just theory. They are the 
+language of every alert Suricata generates.
+
+**Linux for Blue Team (94% complete)**
+Most security infrastructure runs on Linux. Wazuh, 
+Suricata, and my entire home lab live on Ubuntu. 
+LetsDefend taught me Linux not as a general user 
+but as a security practitioner — navigating logs, 
+managing services, reading system output under pressure.
+
+---
+
+## How It Connects To My Lab
+
+Every concept from LetsDefend has a real counterpart 
+in my home lab:
+
+| LetsDefend Concept | My Home Lab Implementation |
+|---|---|
+| SIEM | Wazuh Manager on Ubuntu |
+| Alert triage | Investigating Wazuh dashboard alerts |
+| IOC detection | VirusTotal API integration |
+| Network monitoring | Suricata IDS on Ubuntu |
+| Threat intelligence | Emerging Threats ruleset |
+| Log management | eve.json → Wazuh pipeline |
+| EDR concepts | Wazuh agent on Windows + Kali |
+
+---
+
+## Badges Earned
+- **SOC Member** — May 2026
+- **Network Cable** — May 2026
+
+---
+
+## What's Next On LetsDefend
+- Complete Linux for Blue Team 
+- Start hands-on alert investigation challenges
+- Work through the Cybersecurity for Students path

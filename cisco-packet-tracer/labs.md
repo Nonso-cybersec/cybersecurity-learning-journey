@@ -1,5 +1,9 @@
 # Cisco Packet Tracer Labs
 
+> **Lab Files:** All `.pkt` files are available for 
+> download in this folder. Open with Cisco Packet Tracer 
+> to interact with the lab configurations directly.
+
 ## Lab 1 — Simple LAN (Star Topology)
 **File:** A simple network.pkt
 

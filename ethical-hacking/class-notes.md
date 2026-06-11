@@ -98,3 +98,158 @@ Understanding the attack makes the defence instinctive.
 | Post Exploitation | Hidden process → Wazuh rootcheck alert |
 | Lateral Movement | Failed logins → successful login correlation |
 
+---
+
+## Class 2 — Passive Reconnaissance & Footprinting
+
+### What Is Footprinting
+
+Footprinting is the digital trail a target leaves on 
+the internet — and the art of finding it without being 
+detected.
+
+Every organisation leaves traces:
+- Domain registration records
+- Employee LinkedIn profiles
+- Old job postings revealing tech stacks
+- Cached pages of deleted content
+- Subdomains indexed by search engines
+
+Even when a target tries to remove their presence — 
+cached pages, archive sites, and data brokers preserve 
+those traces. A skilled OSINT analyst knows where to look.
+
+---
+
+### Passive vs Active Reconnaissance
+
+**Passive — Stealth**
+No packets sent to the target. Uses third-party sources 
+— search engines, social media, WHOIS databases. 
+The target has zero visibility that they are being 
+researched. Completely legal.
+
+**Active — Noisy**
+Directly probes the target. Tools like Nmap send packets 
+to the target's systems. A well-configured IDS/Suricata 
+will detect this — as proven in my home lab when Nmap 
+scans triggered immediate ET SCAN alerts in Wazuh.
+
+Key distinction: passive uses public data, active 
+generates network traffic that leaves evidence.
+
+---
+
+### Google Dorking
+
+Advanced search operators that turn Google into an 
+OSINT weapon:
+
+| Dork | What It Finds |
+|---|---|
+| `site:target.com` | All indexed pages on a domain |
+| `filetype:pdf site:target.com` | Leaked internal documents |
+| `intitle:"index of"` | Exposed directory listings |
+| `inurl:admin` | Admin login pages |
+
+These find information the target didn't intend to expose 
+but failed to restrict. Entirely passive — no interaction 
+with the target's servers.
+
+---
+
+### WHOIS — The Domain ID Card
+
+WHOIS reveals:
+- Who registered the domain and when
+- When it expires
+- Name servers (reveals hosting provider)
+- Administrative contact emails and phones
+
+This data alone can reveal the target's tech stack, 
+hosting provider, and sometimes direct contact details 
+for social engineering.
+
+---
+
+### AMASS — Passive Subdomain Enumeration
+
+```bash
+amass enum -passive -d target.com
+```
+
+Scrapes 50+ sources without touching the target's DNS:
+- Finds subdomains stealthily
+- Maps IP ranges and hosting infrastructure
+- Integrates Shodan, Censys, VirusTotal, SecurityTrails
+
+---
+
+### The OSINT Workflow
+
+
+
+The OSINT framework follows 4 structured stages — 
+turning scattered public data into actionable intelligence.
+
+**Stage 1 — Scoping**
+Define exactly who and what you are investigating.
+- Target name and domain
+- Core assets (websites, subdomains, employees)
+- Boundaries — what is in scope and what is not
+Without clear scope, you collect noise instead of intelligence.
+
+**Stage 2 — Harvesting**
+Actively collect data from public sources:
+- WHOIS — domain registration details
+- Google Dorks — exposed files and pages
+- theHarvester — emails, subdomains, IPs
+- Amass — passive subdomain enumeration
+- Social media — employee names, tech stacks, org structure
+This stage answers: *"What can I find?"*
+
+**Stage 3 — Aggregation**
+Merge all findings from different sources into one 
+unified profile. Data from WHOIS, Google, LinkedIn, 
+and theHarvester are combined — painting a complete 
+picture of the target's digital presence.
+This stage answers: *"What does it all mean together?"*
+
+**Stage 4 — Analysis**
+Review the aggregated profile and identify:
+- Weak points and misconfigurations
+- Unsecured ports and exposed services
+- Leaked documents and credentials
+- Attack vectors worth pursuing
+This stage answers: *"Where are the opportunities?"*
+
+---
+
+### Why This Workflow Matters For SOC Work
+
+Understanding how attackers gather intelligence helps 
+defenders reduce their attack surface. Running this 
+workflow against one's own organisation reveals what 
+attackers see — before they use it against you.
+
+---
+
+### Practical — theHarvester on Tesla.com
+
+**Command run:**
+```bash
+theHarvester -d tesla.com -b google
+```
+
+**What theHarvester does:**
+Queries public sources to harvest:
+- Email addresses associated with the domain
+- Subdomains discovered through search engines
+- IP addresses and hosting information
+
+**Why Tesla.com:**
+Public company — all information gathered is publicly 
+available. Using a real target makes the exercise 
+meaningful and realistic.
+
+

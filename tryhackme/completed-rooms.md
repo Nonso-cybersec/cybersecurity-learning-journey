@@ -177,3 +177,162 @@ exposed and minimise it before the attacker finds it.
 
 This is why regular passive recon audits of one's own 
 organisation are essential security hygiene.
+
+# TryHackMe - OSINT Challenge Walkthrough
+
+## Objective
+
+The objective of this challenge was to build a profile of a target using only passive reconnaissance techniques. The investigation began with a single image provided by the room and required gathering information exclusively from publicly available sources.
+
+> No active exploitation, unauthorized access, or intrusive techniques were used during this exercise.
+
+---
+
+## Methodology
+
+### 1. Metadata Analysis
+
+The image metadata was examined to identify information embedded within the file.
+
+**Information Discovered**
+
+* City: London
+
+**Tools Used**
+
+* ExifTool
+* Online metadata viewers
+
+**Purpose**
+
+Metadata can reveal location information, device details, timestamps, and other contextual information that may assist further investigation.
+
+---
+
+### 2. Username Enumeration
+
+Information extracted from the image was used to identify potential usernames associated with the target.
+
+**Information Discovered**
+
+* GitHub profile linked to the target
+
+**Tools Used**
+
+* Search engines
+* GitHub
+
+**Purpose**
+
+Usernames often act as digital identifiers and can be reused across multiple platforms.
+
+---
+
+### 3. Email Discovery
+
+The GitHub profile contained publicly accessible contact information.
+
+**Information Discovered**
+
+* Public email address
+
+**Tools Used**
+
+* GitHub profile review
+
+**Purpose**
+
+Email addresses can be valuable intelligence for social engineering and account correlation activities.
+
+---
+
+### 4. Wireless Network Identification
+
+A broadcast SSID associated with the target was identified and searched within a public wireless database.
+
+**Information Discovered**
+
+* Wireless Access Point (WAP) SSID
+
+**Tools Used**
+
+* Wigle.net
+
+**Purpose**
+
+Public Wi-Fi databases can provide information regarding network names and approximate locations where devices have connected.
+
+---
+
+### 5. Social Media and Public Content Review
+
+Publicly available posts were reviewed to identify additional contextual information.
+
+**Information Discovered**
+
+* Holiday destination: New York
+
+**Purpose**
+
+Travel patterns, interests, and behavioural information can be useful during intelligence gathering.
+
+---
+
+### 6. Source Code Review
+
+Public web content associated with the target was examined.
+
+**Information Discovered**
+
+* Password exposed within WordPress page source code
+
+**Purpose**
+
+Misconfigured websites and exposed credentials remain a common source of information leakage.
+
+---
+
+## Findings Summary
+
+| Information Type      | Result                             |
+| --------------------- | ---------------------------------- |
+| City                  | London                             |
+| Email Address         | Discovered via GitHub              |
+| GitHub Account        | Identified                         |
+| Wireless Network SSID | Identified through Wigle           |
+| Travel Information    | New York holiday location          |
+| Password Exposure     | Found within WordPress source code |
+
+---
+
+## Security Implications
+
+This exercise demonstrates how seemingly harmless public information can be combined to build a comprehensive profile of an individual.
+
+Potential risks include:
+
+* Social engineering attacks
+* Credential-based attacks
+* Targeted phishing campaigns
+* Identity profiling
+* Account enumeration
+
+The investigation required no exploitation of systems and relied entirely on publicly accessible information.
+
+---
+
+## Key Lessons Learned
+
+* Metadata should be removed from files before public sharing.
+* Public repositories should be regularly audited for exposed credentials.
+* Website source code should be reviewed for sensitive information exposure.
+* Individuals and organizations should periodically assess their digital footprint.
+* OSINT techniques are valuable for both offensive and defensive security teams.
+
+---
+
+## Conclusion
+
+This challenge demonstrated how a single image can serve as the starting point for a comprehensive OSINT investigation. Through passive reconnaissance alone, it was possible to uncover location data, online identities, contact information, network details, travel history, and exposed credentials.
+
+The exercise highlights the importance of digital footprint management and reinforces the principle that security begins long before an attacker attempts exploitation.

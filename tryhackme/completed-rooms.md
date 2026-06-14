@@ -336,3 +336,168 @@ The investigation required no exploitation of systems and relied entirely on pub
 This challenge demonstrated how a single image can serve as the starting point for a comprehensive OSINT investigation. Through passive reconnaissance alone, it was possible to uncover location data, online identities, contact information, network details, travel history, and exposed credentials.
 
 The exercise highlights the importance of digital footprint management and reinforces the principle that security begins long before an attacker attempts exploitation.
+
+## Sakura Room — OSINT Investigation Writeup
+**Platform:** TryHackMe
+**Date:** June 12-14, 2026
+**Difficulty:** Medium
+
+---
+
+### Overview
+
+This room simulates a real OSINT investigation — 
+building a complete profile of an attacker using 
+only publicly available information. Starting from 
+a single image file, I traced the attacker across 
+multiple platforms, the blockchain, the dark web, 
+and physical geolocation.
+
+The lesson: a little information at a time builds 
+a complete picture of a person.
+
+---
+
+### Task 1 — Identity Discovery (ExifTool)
+
+**Objective:** Identify the attacker from a file.
+
+Loaded the provided file URL into ExifTool to 
+extract metadata. ExifTool revealed the attacker's 
+username embedded in the file metadata.
+
+**Tool:** ExifTool
+**Finding:** Attacker username extracted from metadata
+
+---
+
+### Task 2 — Social Media & Email (GitHub + Twitter/X)
+
+**Objective:** Find the attacker's email and full name.
+
+Searched the username across platforms via Google.
+Found a GitHub account with matching characteristics.
+
+- **Email** — found directly on the GitHub profile
+- **Full name** — found on Twitter/X profile (@SakuraLoverAiko)
+
+**Key lesson:** People reuse usernames across platforms. 
+One username becomes a pivot point to find everything else.
+
+---
+
+### Task 3 — Cryptocurrency (Ethereum Blockchain)
+
+**Objective:** Find the attacker's cryptocurrency wallet.
+
+Deep dive into the GitHub account revealed an 
+Ethereum repository. The commit history contained 
+a file named "creating mining script" — inside was 
+the attacker's Ethereum wallet address.
+
+Used **Etherscan.io** to trace blockchain transactions:
+- Received payments from **Ethermine** on January 23, 2021
+- Also received **Tether (USDT)** as payment
+- Transaction history fully public on the blockchain
+
+**Key lesson:** Blockchain transactions are permanent 
+and public. A wallet address reveals complete 
+financial history — who paid you, when, and how much.
+
+---
+
+### Task 4 — Dark Web & WiFi Geolocation (BSSID)
+
+**Objective:** Find the attacker's home location via WiFi.
+
+**The investigation chain:**
+
+1. Found Twitter handle @SakuraLoverAiko
+2. Tweet contained MD5 hash linking to a DeepPaste 
+   (.onion) paste — "Regular WiFi and Passwords"
+3. Paste contained SSID: **DK1F-G**
+4. Searched DK1F-G on **Wigle.net Advanced Search**
+5. Result: **BSSID: 84:AF:EC:34:FC:F8**
+6. Coordinates: Lat 40.60, Long 140.46 → **Hirosaki, Japan**
+
+**Challenge faced:** DeepPaste was offline. The paste 
+site had changed domains. Had to find the SSID from 
+a screenshot of the paste rather than accessing it 
+directly. This is real OSINT — sources go offline, 
+investigators must adapt.
+
+**Key lesson:** SSID names are not unique — always 
+verify with BSSID (MAC address) which is globally 
+unique to one physical router. Wigle.net maps WiFi 
+networks globally using crowdsourced wardriving data.
+
+---
+
+### Task 5 — Homebound (Physical Geolocation)
+
+**Objective:** Find the attacker's last location.
+
+Aiko posted a photo of cherry blossoms on Twitter 
+with the caption "Checking out some last minute 
+cherry blossoms before heading home!"
+
+**Google Image Search** on the cherry blossom photo 
+identified the location as the **DCA Airport line** 
+(Washington DC area).
+
+Aiko also mentioned visiting the **Sakura Lounge** 
+as her last location — research revealed the Sakura 
+Lounge is operated by **Japan Airlines at Haneda Airport**.
+
+**Lake Inawashiro** in Fukushima Prefecture identified 
+from another image using Google Images — corroborating 
+the Japan home location established by the WiFi BSSID.
+
+---
+
+### Complete Attacker Profile Built
+
+| Data Point | Value | Source |
+|---|---|---|
+| Username | SakuraLoverAiko | ExifTool metadata |
+| Full name | Aiko | Twitter/X profile |
+| Email | Found on GitHub | GitHub profile |
+| Crypto wallet | 0xa102397d...B53abB6ef | GitHub commit history |
+| Crypto payments | Ethermine + Tether | Etherscan.io |
+| WiFi SSID | DK1F-G | DeepPaste (.onion) |
+| BSSID | 84:AF:EC:34:FC:F8 | Wigle.net |
+| Home city | Hirosaki, Japan | Wigle.net coordinates |
+| Last location | Haneda Airport (JAL Sakura Lounge) | Google + research |
+| Holiday destination | Washington DC area | Google Image Search |
+
+---
+
+### Key Takeaways
+
+**1. Usernames are pivot points**
+One username across multiple platforms connects 
+identity, email, social media, and professional accounts.
+
+**2. Blockchain is permanently public**
+A wallet address exposes complete financial history. 
+Cryptocurrency is not anonymous — it's pseudonymous 
+at best.
+
+**3. WiFi geolocation is powerful**
+BSSID + Wigle.net can pinpoint a person's home 
+location from a single social media post mentioning 
+their WiFi network name.
+
+**4. Images carry invisible data**
+Metadata, visual landmarks, and reverse image search 
+can geolocate any photo posted online.
+
+**5. Dead ends are part of real OSINT**
+The DeepPaste site was offline. Real investigations 
+hit dead ends — the skill is knowing how to find 
+the same information through alternative routes.
+
+**6. Small data points build big pictures**
+No single piece of information was conclusive alone. 
+Combined across platforms — identity, location, 
+finances, movement patterns — a complete profile emerged.

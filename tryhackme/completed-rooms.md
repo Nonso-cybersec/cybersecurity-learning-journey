@@ -378,7 +378,46 @@ username embedded in the file metadata.
 Searched the username across platforms via Google.
 Found a GitHub account with matching characteristics.
 
-- **Email** — found directly on the GitHub profile
+### Obtaining the Email Address — PGP Key Analysis
+
+The GitHub profile contained a PGP public key. 
+Most people share PGP keys for encrypted communication 
+without realising the key itself contains identifying 
+metadata in the User ID (UID) field.
+
+**Steps:**
+
+1. Saved the PGP key block to a file:
+```bash
+nano key.asc
+```
+
+2. Inspected the key with GPG:
+```bash
+gpg --with-fingerprint key.asc
+```
+
+**Output:**
+
+pub   rsa3072 2021-01-23 [SC] [expired: 2023-01-22]
+
+uid   SakuraSnowAngel83@protonmail.com
+
+sub   rsa3072 2021-01-23 [E] [expired: 2023-01-22]
+
+**Finding:** Email address `SakuraSnowAngel83@protonmail.com`
+revealed in the UID field.
+
+**Key observations:**
+- RSA 3072-bit key — strong encryption standard
+- Key expired January 2023 — account possibly abandoned
+- ProtonMail address — attacker was privacy-conscious
+  yet leaked their email through a public key
+
+**OSINT lesson:** PGP keys are shared publicly by 
+design — but the metadata they contain makes them 
+valuable intelligence sources. A privacy tool 
+became an exposure point.
 - **Full name** — found on Twitter/X profile (@SakuraLoverAiko)
 
 **Key lesson:** People reuse usernames across platforms. 

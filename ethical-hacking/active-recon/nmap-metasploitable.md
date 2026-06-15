@@ -167,10 +167,8 @@ is what makes a complete security practitioner.
 
 ---
 
-## Screenshots
-
-![Nmap SYN Scan](../../images/Nmap_1.png)
-![Nmap Version Detection](../../images/Nmap_2.png)
-![Nmap OS Detection](../../images/Nmap_3.png)
-![Nmap Aggressive Scan Part 1](../../images/Nmap_4.png)
-![Nmap Aggressive Scan Part 2](../../images/Nmap_5.png)
+![Nmap SYN Scan](/images/Nmap%201.png)
+![Nmap Version Detection](/images/Nmap%202.png)
+![Nmap OS Detection](/images/Nmap%203.png)
+![Nmap Aggressive Scan Part 1](/images/Nmap%204.png)
+![Nmap Aggressive Scan Part 2](/images/Nmap%205.png)

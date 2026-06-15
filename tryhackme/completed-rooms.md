@@ -422,6 +422,7 @@ became an exposure point.
 
 **Key lesson:** People reuse usernames across platforms. 
 One username becomes a pivot point to find everything else.
+![Aiko Taunt Account Details](../images/AIKO%20TAUNT.png)
 
 ---
 
@@ -442,6 +443,7 @@ Used **Etherscan.io** to trace blockchain transactions:
 **Key lesson:** Blockchain transactions are permanent 
 and public. A wallet address reveals complete 
 financial history — who paid you, when, and how much.
+![Aiko Account Configuration](../images/Aiko%20acc.png)
 
 ---
 
@@ -469,6 +471,7 @@ investigators must adapt.
 verify with BSSID (MAC address) which is globally 
 unique to one physical router. Wigle.net maps WiFi 
 networks globally using crowdsourced wardriving data.
+![Aiko WiGle Map Data](../images/Aiko%20wigle.webp)
 
 ---
 
@@ -540,3 +543,4 @@ the same information through alternative routes.
 No single piece of information was conclusive alone. 
 Combined across platforms — identity, location, 
 finances, movement patterns — a complete profile emerged.
+![Sakura Room Completion](../images/Sakura.png)
